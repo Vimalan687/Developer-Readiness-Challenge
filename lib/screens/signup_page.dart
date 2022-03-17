@@ -165,6 +165,7 @@ class _SignupScreenScreenState extends State<SignupScreen> {
                             obscureText: visible_text,
                             validator: MultiValidator([
                               RequiredValidator(errorText: "Required"),
+
                               PatternValidator(
                                   r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~]).{10,}$',
                                   errorText: "Required:"),
