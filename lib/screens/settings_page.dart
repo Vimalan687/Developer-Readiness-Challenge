@@ -1,24 +1,13 @@
 //import 'dart:html';
 
 import 'dart:convert';
-import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_picker_dropdown.dart';
-
-import 'package:country_pickers/utils/utils.dart';
 import 'package:drc/components/change_theme_button_widget.dart';
-import 'package:drc/screens/explorer_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:web_socket_channel/io.dart';
 import '../components/iconwidget.dart';
-import 'history_page.dart';
-import 'login_page.dart';
-import 'market_list_page.dart';
-import 'profile_page.dart';
-import 'package:intl/intl.dart';
 
 class SettingsPage extends StatefulWidget {
-  final String? value;
+  final String value;
 
   const SettingsPage({Key? key, required this.value}) : super(key: key);
 
@@ -27,7 +16,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String? value;
+  String value;
   _SettingsPageState(this.value);
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
@@ -42,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
   String phoneNumber = '+601123456789';
   String password = '********';
   String countryName = 'Indonesia';
-  String? apiToken = '***********';
+  String apiToken = '***********';
   DateTime date = DateTime.now();
 
   final channel = IOWebSocketChannel.connect(
@@ -89,6 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var hiddenToken = apiToken.replaceRange(0, 11, 'XXXXXXXXXXX');
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -234,7 +224,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       style: TextStyle(color: Colors.black),
                     ),
                     subtitle: Text(
-                      '$apiToken',
+                      '$hiddenToken',
                       style: TextStyle(color: Colors.black),
                     ),
                   ),

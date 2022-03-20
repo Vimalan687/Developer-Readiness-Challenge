@@ -1,10 +1,8 @@
 // ignore_for_file: no_logic_in_create_state
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:intl/intl.dart';
 
 class onGoingPrice extends StatefulWidget {
@@ -88,9 +86,11 @@ class _onGoingPriceState extends State<onGoingPrice> {
       var tickStream = jsonDecode(data);
       currentPrice = tickStream['tick']['quote'];
 
-      setState(() {
-        currentPrice = tickStream['tick']['quote'];
-      });
+      if (mounted) {
+        setState(() {
+          currentPrice = tickStream['tick']['quote'];
+        });
+      }
     });
   }
 }

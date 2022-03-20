@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:drc/components/monthString.dart';
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,7 +16,7 @@ class newList extends StatefulWidget {
 
 class _newListState extends State<newList> {
   news() async {
-    var url = await http.get(Uri.parse("http://192.168.100.144:3000/news"));
+    var url = await http.get(Uri.parse("https://berad-api.herokuapp.com/news"));
     return json.decode(url.body);
   }
 
@@ -62,7 +61,7 @@ class _newListState extends State<newList> {
                               child: (snapshot.data[index].runtimeType != 'int')
                                   ? Image.network(
                                       snapshot.data[index]['image_url'],
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.contain,
                                       width: double.infinity,
                                       height: 110,
                                     )
